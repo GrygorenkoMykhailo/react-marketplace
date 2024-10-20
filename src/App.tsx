@@ -6,6 +6,7 @@ import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import { Product } from './components/types'; // Импортируйте интерфейс Product
 import './App.css';
+import SignInModal from './components/SignInModal/SingInModal';
 
 const App: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -45,19 +46,22 @@ const App: React.FC = () => {
     );
 
     return (
-        <div className="app">
-            <Header 
-                searchTerm={searchTerm} 
-                setSearchTerm={setSearchTerm} 
-                handleSearchKeyPress={handleSearchKeyPress}  // Передаем функцию для Enter
-                handleSearchClick={handleSearchClick}  // Передаем функцию для кнопки поиска
-                cartItems={cartItems} 
-            />
-            <div className="main-content">
-                <CategoriesMenu setCurrentCategory={setCurrentCategory} />
-                <ProductList products={filteredProducts} addToCart={addToCart} />
+        <>
+            <div className="app">
+                <Header 
+                    searchTerm={searchTerm} 
+                    setSearchTerm={setSearchTerm} 
+                    handleSearchKeyPress={handleSearchKeyPress}  // Передаем функцию для Enter
+                    handleSearchClick={handleSearchClick}  // Передаем функцию для кнопки поиска
+                    cartItems={cartItems} 
+                />
+                <div className="main-content">
+                    <CategoriesMenu setCurrentCategory={setCurrentCategory} />
+                    <ProductList products={filteredProducts} addToCart={addToCart} />
+                </div>
             </div>
-        </div>
+            <SignInModal show={true} />
+        </>
     );
 }
 
